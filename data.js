@@ -23,7 +23,67 @@ export const fundamentals = [
 ['How should you practice BCG fit questions?','Prepare truthful examples of impact, teamwork, conflict, initiative and learning. Explain your own actions and measurable results; practice follow-up questions and a specific Why BCG / Why consulting answer.'],
 ['How do you make a structure case-specific?','Use the client’s revenue model, customers, geography, objective and constraints. Explain causal drivers instead of listing memorized business labels.']
 ];
-export const flashcards = [...cases.flatMap(c=>[{front:`Structure: ${c.name}`,back:c.structure.join('\n')},{front:`Avoid this trap: ${c.name}`,back:c.trap},{front:c.follow,back:c.answer}]),...fundamentals.map(([front,back])=>({front,back}))];
+// Transcribed and paraphrased from the user-provided framework cheat sheet.
+// The image is a study aid, not evidence of official BCG endorsement or case frequency.
+export const frameworks = [
+{name:'Profit improvement',question:'Why are profits declining and how can we improve them?',branches:[
+['Revenue drivers',['Price: average price and discounts','Volume: units and customers','Product and customer mix','Other revenue: upsell and ancillary streams']],
+['Cost drivers',['Fixed costs: rent and salaries','Variable costs: materials, labor and shipping','Efficiency: supplier pricing, productivity and waste']],
+['External factors',['Market conditions: growth and seasonality','Competition: pricing and new entrants','Regulation: taxes and compliance']],
+['Solutions & feasibility',['Revenue opportunities','Cost reduction opportunities','Financial impact and ROI','Implementation risks']]]},
+{name:'Revenue growth',question:'How can the company increase its revenue?',branches:[
+['Grow existing business',['Increase prices','Increase sales volume: new customers and purchase frequency','Improve sales and marketing effectiveness','Reduce churn']],
+['Expand into new markets',['New geographies','New customer segments','New distribution channels: e-commerce, retail and partnerships']],
+['New products & services',['New product lines and variations','New revenue models: subscriptions and licensing','Strategic partnerships']],
+['Financial attractiveness',['Incremental revenue and costs','Cannibalization risk','Required investment','ROI, payback period and execution feasibility']]]},
+{name:'Market entry',question:'Should we enter this market and how should we enter?',branches:[
+['Market attractiveness',['Market size: TAM and SAM','Historical and projected growth','Customer needs and willingness to pay','Market profitability']],
+['Competitive landscape',['Existing competitors and competitive intensity','Substitutes','Entry barriers: regulation, capital and IP']],
+['Company capabilities',['Internal strengths','Competitive advantage','Capability gaps: talent and infrastructure']],
+['Entry strategy & economics',['Organic entry, acquisition or joint venture','Costs, revenues and break-even','Key risks','Implementation feasibility']]]},
+{name:'Cost cutting',question:'How can the company reduce costs without harming the business?',branches:[
+['Fixed costs',['Labor: salaries and benefits','Facilities: rent and utilities','Administration: IT, insurance and professional services']],
+['Variable costs',['Production: materials and labor','Supply chain: shipping and warehousing','Sales and distribution: commissions and marketing']],
+['Operational efficiency',['Process improvements','Procurement savings','Automation and technology','Asset utilization: equipment and inventory']],
+['Implementation & risks',['Savings potential and implementation costs','Impact on quality and customers','Feasibility and timeline','Regulatory and organizational risks']]]},
+{name:'Process optimization',question:'How can we make this process more efficient?',branches:[
+['Current process',['Process steps and flow','Performance: cycle time, cost and quality','Bottlenecks','Inputs, outputs and handoffs']],
+['Root causes',['People: staffing and training','Technology: outdated systems','Process design: unnecessary steps and approvals','Resources: equipment and materials']],
+['Improvement opportunities',['Automation','Redesign: remove steps or parallelize','Resource optimization','Standardization']],
+['Impact & implementation',['Cost savings and faster cycle times','Higher quality and output','Implementation costs','Change management']]]},
+{name:'Product launch',question:'Should we launch this product and how should we do it?',branches:[
+['Market & customer demand',['Market size and growth','Customer needs and willingness to pay','Competition','Expected adoption']],
+['Product & advantage',['Product features','Differentiation: quality, price and unique value','Fit with brand and portfolio','Cannibalization risk']],
+['Financial viability',['Expected revenue: units × price','Development and production costs','Marketing and distribution costs','Profitability: break-even and ROI']],
+['Go-to-market strategy',['Pricing strategy','Distribution channels','Marketing and positioning','Launch execution: pilot, capacity and timing']]]},
+{name:'Mergers & acquisitions',question:'Should we acquire this company?',branches:[
+['Strategic fit',['Market position','Access to new markets','Product and customer fit','Strategic rationale: growth and capabilities']],
+['Target attractiveness',['Financial performance and market position','Competitive advantages','Management team','Business quality: technology, IP and customer base']],
+['Synergies',['Revenue: cross-selling and new markets','Cost: overhead and procurement','Operations: combined expertise']],
+['Deal economics & risks',['Valuation and purchase price','Expected returns: ROI and IRR','Integration costs','Integration, regulatory and cultural risks']]]},
+{name:'Investment decisions',question:'Should we invest in this project or opportunity?',branches:[
+['Financial returns',['Initial investment: capex','Expected revenue and cost savings','NPV and IRR','Payback period and break-even']],
+['Strategic benefits',['Growth opportunities','Competitive advantage','Alignment with company goals','Long-term value']],
+['Risks',['Market: demand and competition','Operational: execution and technology','Financial: cost overruns','Regulatory risks']],
+['Alternatives & feasibility',['Alternative investments','Build versus buy versus partner','Resources: capital and talent','Implementation timeline']]]},
+{name:'Competitive threat',question:'How should we respond to a competitor’s move?',branches:[
+['Understand the threat',['Competitor actions: price cuts and new products','Competitor strengths','Magnitude of threat: market share at risk']],
+['Customer & market impact',['Customer switching and price sensitivity','Market dynamics: growth and substitutes','Financial impact: revenue and margins']],
+['Strategic response',['Pricing response','Product differentiation','Retention: loyalty and service','Expansion: new segments and geographies']],
+['Economics & execution',['Cost of response','Expected revenue protected and ROI','Feasibility: resources and speed','Risks: retaliation and price wars']]]},
+{name:'Pricing',question:'What is the optimal price for this product or service?',branches:[
+['Cost-based pricing',['Fixed and variable costs','Target margin','Break-even price']],
+['Customer willingness to pay',['Perceived value','Customer segments','Price sensitivity and elasticity','Demand at different prices']],
+['Competitive pricing',['Competitor prices and positioning','Substitutes','Industry pricing dynamics']],
+['Pricing strategy & implementation',['Value-based, penetration or premium model','Differentiate by segment, geography or volume','Discounts, subscriptions and bundles','Customer acceptance and competitor response']]]}
+];
+// Add the two distinct image categories without replacing existing practice or stored notes.
+cases.push(
+{name:'Cost cutting',prompt:'A hotel chain must reduce annual operating costs by 10% while maintaining guest satisfaction. Where should it focus?',clarify:'Confirm cost baseline, deadline, service guardrails, locations, contract terms and one-off versus recurring savings.',structure:frameworks[3].branches.map(([title,items])=>title+': '+items.join('; ')+'.'),hypothesis:'Procurement and better shift scheduling may reduce costs with less guest impact than across-the-board staffing cuts; test with data.',trap:'Assuming all labor is fixed or cutting service without measuring customer and revenue effects.',follow:'Baseline annual costs are $80m. A project saves $10m annually but adds $2m recurring costs and $3m one-off implementation cost. Does it meet a 10% first-year reduction?',answer:'No. Net first-year savings are $10m − $2m − $3m = $5m, or 6.25%. Steady-state savings are $8m, or 10%, before revenue effects.'},
+{name:'Product launch',prompt:'A beverage company is considering a low-sugar energy drink for young professionals. Should it launch, and how?',clarify:'Define launch geography, target customer, profit or growth objective, timeframe, investment limit and brand constraints.',structure:frameworks[5].branches.map(([title,items])=>title+': '+items.join('; ')+'.'),hypothesis:'Pilot in a focused channel to validate repeat purchase and incremental demand before committing to a national rollout.',trap:'Counting sales diverted from existing products as fully incremental or confusing trial with repeat demand.',follow:'The new drink sells 1m units with $2 contribution per unit. It displaces 200,000 units of an existing drink with $1.50 contribution. Launch fixed costs are $1.2m. What is incremental profit?',answer:'$2m new contribution − $0.3m lost existing contribution − $1.2m fixed costs = $0.5m incremental profit, assuming all other costs are included.'}
+);
+export const flashcards = [...cases.slice(0,10).flatMap(c=>[{front:`Structure: ${c.name}`,back:c.structure.join('\n')},{front:`Avoid this trap: ${c.name}`,back:c.trap},{front:c.follow,back:c.answer}]),...fundamentals.map(([front,back])=>({front,back}))];
+flashcards.push(...cases.slice(10).flatMap(c=>[{front:`Structure: ${c.name}`,back:c.structure.join('\n')},{front:c.follow,back:c.answer}]),...frameworks.flatMap(f=>[{front:`Cheat sheet: recall the four branches of ${f.name}`,back:f.branches.map(([title])=>title).join(' → ')},...f.branches.map(([title,items])=>({front:`${f.name}: what belongs under ${title}?`,back:items.join('\n')}))]));
 export const questions = [
 ...cases.map(c=>({question:c.prompt,options:cases.map(x=>x.name),correct:cases.indexOf(c),explanation:`Best primary lens: ${c.name}. ${c.structure[0]} Other lenses may also be relevant.`})),
 {question:'Revenue is $10m and operating costs are $8m. What is operating margin?',options:['20%','25%','80%','2%'],correct:0,explanation:'($10m − $8m) / $10m = 20%.'},
@@ -34,6 +94,7 @@ export const questions = [
 {question:'A margin moves from 12% to 15%. This is…',options:['3% relative growth','25 percentage points','3 percentage points; 25% relative growth','15% relative growth'],correct:2,explanation:'15 − 12 = 3 percentage points; 3/12 = 25% relative growth.'}
 ];
 export const drills = [
+...frameworks.map(f=>[`Structure ${f.name.toLowerCase()} from memory in 60 seconds.`,f.branches.map(([title,items])=>title+': '+items.join('; ')).join('\n')]),
 ['What is 15% of 240 million?','36 million. 10% = 24m; 5% = 12m.'],['Estimate 49 × 21, then calculate exactly.','Estimate ~1,000; exact answer 1,029.'],['Revenue $80m, margin 25%: profit?','$20m.'],['A $200 price falls 15%. New price?','$170.'],['Sales rise from 120 to 150. Growth?','25%. (150 − 120)/120.'],['$3m fixed costs, $12 unit contribution: break-even?','250,000 units.'],['Market $2bn, share 7%: revenue?','$140m.'],['Costs grow 10% from $40m; revenue stays $50m. New profit?','$6m, down from $10m (−40%).'],['Structure a hospital’s rising patient waiting times in 60 seconds.','Map arrival → triage → consultation → testing → discharge; segment demand; compare capacity, processing time, utilization, variability and bottlenecks. Prioritize safety.'],['Give a 45-second recommendation for an unprofitable delivery service.','State a conditional recommendation, two evidence-based drivers, the largest risk, and a pilot or next analysis. Do not invent supporting facts.'],['Structure declining airline profit in 60 seconds.','Revenue: passengers × fare plus ancillary and cargo; segment routes and cabins. Costs: fuel, labor, aircraft, airports. Compare load factor, yield, capacity and external shocks.'],['Explain the difference between revenue growth and value creation in 45 seconds.','Growth creates value when incremental discounted cash flows exceed investment and opportunity cost. Consider margins, working capital, capex and risk.']
 ];
 export const plan = [
@@ -45,8 +106,8 @@ export const plan = [
 ['Market sizing','Do three estimates with explicit assumptions, units and a second sanity check. Practice a teamwork story.'],
 ['First mock & review','Run a 35–45 minute live mock with a partner if available; ask for feedback on structure, math, synthesis and interaction. Review errors.'],
 ['M&A','Separate standalone value, synergies and integration costs. Practice an authentic conflict story.'],
-['Operations','Map a process, locate bottlenecks and compare fixes. Do speed math and explain calculations before solving.'],
-['Investment','Practice contribution, break-even, payback and NPV intuition. Run downside scenarios.'],
+['Process optimization & cost cutting','Map a process, locate bottlenecks, distinguish cost types and compare savings after implementation costs. Do speed math and explain calculations before solving.'],
+['Investment & product launch','Practice launch demand, positioning and distribution; calculate contribution, break-even, payback and NPV intuition. Run downside scenarios.'],
 ['Competition & turnaround','Compare targeted and broad responses; distinguish profit and cash. Practice a failure-and-learning story.'],
 ['Second mock','Run an unfamiliar full case with interruptions and exhibits. Practice listening, adapting hypotheses and concise synthesis.'],
 ['Target weak spots','Retest missed questions, redo weak structures from a blank page, practice fit follow-ups and thoughtful interviewer questions.'],
