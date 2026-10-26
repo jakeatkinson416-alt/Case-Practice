@@ -10,7 +10,7 @@ Requires Node.js 20 or later. No external packages, API keys, database, or insta
 npm start
 ```
 
-The server listens on port 3000 (`PORT` overrides it). Open the server in your normal local development browser. Run `npm test` for content consistency checks. The static assets can also be deployed to any static host, including GitHub Pages; change absolute asset paths to relative paths for a project subpath deployment. Deployment is not configured here.
+The server listens on port 3000 (`PORT` overrides it). Open the server in your normal local development browser. Run `npm test` for content consistency checks. The static assets are ready for GitHub Pages. In repository Settings → Pages, choose Deploy from a branch, select main and / (root), and save. The site will be at https://jakeatkinson416-alt.github.io/Case-Practice/ after GitHub completes deployment. No build step is required.
 
 ## Study modes
 
