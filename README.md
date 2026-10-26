@@ -14,6 +14,9 @@ The server listens on port 3000 (`PORT` overrides it). Open the server in your n
 
 ## Study modes
 
+- Structure tests: select any of the ten image subjects or all ten; practice selecting the four buckets, finding a missing bucket, and sorting details. Mixed tests contain three questions per subject. Recall-only contains five per subject; sorting contains four. Immediate explanations, per-subject results and missed-question retries; no API or AI grading. Scores use exact cheat-sheet labels, not an assessment of all valid interview frameworks.
+
+
 - Framework cheat sheet: profit improvement, revenue growth, market entry, cost cutting, process optimization, product launch, M&A, investment decisions, competitive threat and pricing; all four branches and supporting details from the picture, with clarification of context-dependent cost classification.
 
 
@@ -29,4 +32,4 @@ Progress is stored only in browser local storage. Export notes and progress from
 
 ## Development
 
-`data.js` holds the study content; `app.js` implements the study modes; `style.css` controls responsive layout. The Node server only exposes the five public assets, not repository files. This cloud task is already isolated: use the existing checkout; do not create a worktree unless explicitly requested.
+`data.js` holds the study content; `app.js` implements the study modes; `style.css` controls responsive layout. The Node server only exposes the public application assets, not repository files. This cloud task is already isolated: use the existing checkout; do not create a worktree unless explicitly requested.
